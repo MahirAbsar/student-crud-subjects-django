@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %} Adding Subject{% endblock %}
+{% block content %}
+<h1>Subject Form</h1>
+<form method="POST">
+
+  {{ subject_form.as_p }}
+  {% csrf_token %}
+  <input type="submit"  value="Add" class="btn btn-primary btn-lg">
+
+</form>
+{% endblock %}

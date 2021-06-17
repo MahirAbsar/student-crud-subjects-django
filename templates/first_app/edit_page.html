@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %} EDIT INFO {% endblock %}
+{% block content %}
+
+<h4><i>Edit Information</i></h4>
+{% if student_edit %}
+
+<form method="POST">
+  {{ student_form.as_p }}
+  {% csrf_token %}
+  <input type="submit" value="Update" class="btn btn-primary btn-lg">
+
+</form>
+
+{% else %}
+{% if updated %}
+<div class="alert alert-success">Successfully Updated!!!!
+
+</div>
+{% else %}
+<form method="POST">
+  {{ subject_form.as_p }}
+  {% csrf_token %}
+  <input type="submit" value="Update" class="btn btn-primary btn-lg">
+  <a href="{% url 'first_app:delete' id=id %}" class="btn btn-danger btn-lg" onclick="return confirm('Do you really want to delete that?')">Delete</a>
+
+</form>
+{% endif %}
+
+{% endif %}
+
+{% endblock %}

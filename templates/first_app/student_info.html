@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %} Student Detail {% endblock %}
+{% block content %}
+
+<h4>Name: <b>{{ student_info.first_name }} {{ student_info.last_name }} </b></h4>
+<h6>Cgpa: {{ student_info.cgpa }}</h6>
+<a href="{% url 'first_app:edit' id=student_info.pk %}" class="btn btn-primary btn-lg">Edit</a>
+<a href="{% url 'first_app:delete' id=student_info.id %}" class="btn btn-danger btn-lg" onclick="return confirm('Do you really want to delete that?')">Delete</a>
+<br>
+<hr>
+<h3>Taken Courses:</h3>
+{% if subjects %}
+<table class="table table-striped table-bordered">
+  <tr>
+    <th>Name</th>
+    <th>Course Code</th>
+    <th>Difficulty</th>
+  </tr>
+  <tr>
+    {% for subjects in subjects %}
+    <td> <a href="{% url 'first_app:edit' id=subjects.pk %}">{{ subjects.name }} </a> </td>
+    <td>{{ subjects.code }}</td>
+    <td>{{ subjects.difficulty_level }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+<h3>No Courses Taken</h3>
+{% endif %}
+{% endblock %}

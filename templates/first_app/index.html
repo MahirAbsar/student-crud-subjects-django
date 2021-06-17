@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<h1 class="text-center">Welcome To Student List</h1>
+{% if all_students %}
+<ul>
+  {% for student in all_students %}
+  <li> <a href="{% url 'first_app:student_detail' id=student.pk %}">{{ student.first_name }} {{ student.last_name }}</a> </li>
+  {% endfor %}
+</ul>
+{% else %}
+<h2>No Students Added</h2>
+{% endif %}
+{% endblock %}
